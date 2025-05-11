@@ -1,0 +1,10 @@
+.highlighted-news {
+        background: linear-gradient(135deg, #ff6347, #ff1493); /* Gradient background */
+        color: white; /* Text color */
+        padding: 0.2rem 0.6rem; /* Padding around text */
+        border-radius: 0.5rem; /* Rounded corners */
+        font-weight: 600; /* Slightly bolder text */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      
+  }
+  
