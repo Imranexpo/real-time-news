@@ -49,20 +49,15 @@ const AlertPreferences = () => {
  useEffect(() => {
   const fetchNews = async () => {
     try {
-      const response = await axios.get('https://newsapi.org/v2/everything', {
-        params: {
-          domains: 'wsj.com', 
-          apiKey: 'c38bede86ae4451d99041d1bda860587',
-        },
-      });
+      const response = await axios.get('http://localhost:5000/api/wsj-news'); 
       setNews(response.data.articles);
     } catch (error) {
       console.error("Error fetching the news", error);
     }
   };
-
   fetchNews();
 }, []);
+
 
   useEffect(() => {
     const interval = setInterval(() => {

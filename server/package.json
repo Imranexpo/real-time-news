@@ -19,7 +19,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.14.2",
     "node-cron": "^4.0.0",
-    "nodemailer": "^7.0.3"
+    "nodemailer": "^7.0.3",
+    "serverless-http": "^3.2.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

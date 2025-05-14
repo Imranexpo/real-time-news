@@ -57,12 +57,62 @@ router.post('/login', async (req, res) => {
   }
 });
 
+router.get('/news', async (req, res) => {
+  try {
+    const newsResponse = await axios.get('https://newsapi.org/v2/everything', {
+      params: {
+        q: 'latest',
+        language: 'en',
+        sortBy: 'publishedAt',
+        apiKey: 'c38bede86ae4451d99041d1bda860587'
+      }
+    });
+
+    res.status(200).json(newsResponse.data); 
+  } catch (error) {
+    console.error('Error fetching news:', error.message);
+    res.status(500).json({ message: "Error fetching news", error: error.message });
+  }
+});
+
+router.get('/weather-news', async (req, res) => {
+  try {
+    const response = await axios.get('https://newsapi.org/v2/everything', {
+      params: {
+        apiKey: 'c38bede86ae4451d99041d1bda860587', 
+        q: 'weather',
+        language: 'en',
+      },
+    });
+
+    res.status(200).json(response.data);
+  } catch (error) {
+    console.error('Error fetching weather news:', error.message);
+    res.status(500).json({ message: 'Failed to fetch weather news', error: error.message });
+  }
+});
+
+router.get('/wsj-news', async (req, res) => {
+  try {
+    const response = await axios.get('https://newsapi.org/v2/everything', {
+      params: {
+        domains: 'wsj.com',
+        apiKey: 'c38bede86ae4451d99041d1bda860587', 
+      },
+    });
+
+    res.status(200).json(response.data);
+  } catch (error) {
+    console.error('Error fetching WSJ news:', error.message);
+    res.status(500).json({ message: 'Failed to fetch WSJ news', error: error.message });
+  }
+});
+
 router.post('/preferences', async (req, res) => {
   const { email, categories, frequency } = req.body;
   if (!email || !categories || categories.length === 0 || !frequency) {
     return res.status(400).json({ message: 'Missing required fields' });
   }
-
   try {
     const preference = new Preference({ email, categories, frequency });
     await preference.save();

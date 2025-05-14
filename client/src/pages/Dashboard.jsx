@@ -4,13 +4,10 @@ import axios from 'axios';
 export default function Dashboard() {
   const [news, setNews] = useState([]);
   useEffect(() => {
-    axios
-      .get(
-        'https://newsapi.org/v2/everything?q=latest&language=en&sortBy=publishedAt&apiKey=c38bede86ae4451d99041d1bda860587'
-      )
-      .then((res) => setNews(res.data.articles))
-      .catch((err) => console.error('Error fetching news:', err));
-  }, []);
+  axios.get('http://localhost:5000/api/news')
+    .then((res) => setNews(res.data.articles))
+    .catch((err) => console.error('Error fetching news:', err));
+}, []);
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <h1 className="text-3xl font-bold text-center mb-6">🌍 Global Latest News</h1>
