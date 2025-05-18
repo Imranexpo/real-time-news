@@ -4,7 +4,7 @@ import axios from 'axios';
 export default function Dashboard() {
   const [news, setNews] = useState([]);
   useEffect(() => {
-  axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/news`)
+  axios.get(`${import.meta.env.VITE_BACKEND_URL}api/news`)
     .then((res) => setNews(res.data.articles))
     .catch((err) => console.error('Error fetching news:', err));
 }, []);
