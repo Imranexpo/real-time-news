@@ -14,4 +14,4 @@ app.use(cors());
 connectDB();
 
 app.use('/api', authRoutes);
-module.exports.handler = serverless(app);
+module.exports.handler = serverless(app); // ✅
