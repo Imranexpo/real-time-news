@@ -4,7 +4,7 @@ import axios from 'axios';
 export default function Dashboard() {
   const [news, setNews] = useState([]);
   useEffect(() => {
-  axios.get('http://localhost:5000/api/news')
+  axios.get('https://real-time-news-six.vercel.app/api/news')
     .then((res) => setNews(res.data.articles))
     .catch((err) => console.error('Error fetching news:', err));
 }, []);
