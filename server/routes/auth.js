@@ -43,9 +43,7 @@ router.post('/register', async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 });
-router.get("/", (req, res) => {
-  res.send("Real-time News Backend is running successfully!");
-});
+
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
