@@ -4,21 +4,14 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth');
 const cors = require('cors');
 const serverless = require('serverless-http');
-require('./scheduler/schedular'); // Import your scheduler (optional)
-
-dotenv.config(); // Load environment variables
-
+require('./scheduler/schedular')
+dotenv.config();
 const app = express();
-
-// Middleware
 app.use(express.json());
 app.use(cors());
-
-// Connect to MongoDB
 connectDB();
-
-// Routes
 app.use('/api', authRoutes);
 
-// Export handler for serverless deployment
 module.exports.handler = serverless(app);
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log('Server running on port ${PORT}'));
