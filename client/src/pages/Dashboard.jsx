@@ -3,15 +3,14 @@ import axios from 'axios';
 
 export default function Dashboard() {
   const [news, setNews] = useState([]);
-  const API_BASE = process.env.REACT_APP_BACKEND_URL;
   useEffect(() => {
-     axios.get('https://real-time-news-9sb0.onrender.com/api/news')
-     .then(response => {
-    console.log(response.data);
-     })
-  .catch(error => {
-    console.error('Error fetching news:', error);
-  });
+  axios.get('https://real-time-news-9sb0.onrender.com/api/news')
+    .then(response => {
+      console.log(response.data); // should show articles
+    })
+    .catch(error => {
+      console.error('Error fetching news:', error);
+    });
 }, []);
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
