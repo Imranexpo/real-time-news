@@ -5,7 +5,7 @@ export default function Dashboard() {
   const [news, setNews] = useState([]);
   const API_BASE = process.env.REACT_APP_BACKEND_URL;
   useEffect(() => {
-     axios.get(`${API_BASE}/api/news`)
+     axios.get('https://real-time-news-9sb0.onrender.com/api/news')
      .then(response => {
     console.log(response.data);
      })
