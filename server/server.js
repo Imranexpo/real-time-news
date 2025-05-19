@@ -1,8 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const newsRoutes = require('./routes/newsRoutes'); // Adjust path if needed
-
+const newsRoutes = require('./routes/auth');
 app.use(cors());
 app.use(express.json());
 
