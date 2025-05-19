@@ -35,7 +35,7 @@ const AlertPreferences = () => {
     }
 
     const payload = { email, categories, frequency };
-    const url = 'http://localhost:5000/api/preferences';
+    const url = 'https://real-time-news-9sb0.onrender.com/api/preferences';
 
     try {
       const response = await axios.post(url, payload);
