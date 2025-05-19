@@ -3,10 +3,15 @@ import axios from 'axios';
 
 export default function Dashboard() {
   const [news, setNews] = useState([]);
+  const API_BASE = process.env.REACT_APP_BACKEND_URL;
   useEffect(() => {
-  axios.get(`${import.meta.env.VITE_BACKEND_URL}api/news`)
-    .then((res) => setNews(res.data.articles))
-    .catch((err) => console.error('Error fetching news:', err));
+     axios.get(`${API_BASE}/api/news`)
+     .then(response => {
+    console.log(response.data);
+     })
+  .catch(error => {
+    console.error('Error fetching news:', error);
+  });
 }, []);
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
