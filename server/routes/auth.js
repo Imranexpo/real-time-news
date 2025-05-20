@@ -9,8 +9,8 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   host: 'smtp.gmail.com',
   auth: {
-     user: 'imranexpo864@gmail.com',
-     pass: 'tnju ivqd emvc xeas'
+  user: process.env.EMAIL_USER,
+  pass: process.env.EMAIL_PASS
   }
 });
 const generateEmailTemplate = (articles) => {
@@ -64,7 +64,7 @@ router.get('/news', async (req, res) => {
         q: 'latest',
         language: 'en',
         sortBy: 'publishedAt',
-        apiKey: 'c38bede86ae4451d99041d1bda860587'
+        apiKey: process.env.NEWS_API_KEY
       }
     });
 
@@ -79,7 +79,7 @@ router.get('/weather-news', async (req, res) => {
   try {
     const response = await axios.get('https://newsapi.org/v2/everything', {
       params: {
-        apiKey: 'c38bede86ae4451d99041d1bda860587', 
+        apiKey: process.env.NEWS_API_KEY,
         q: 'weather',
         language: 'en',
       },
@@ -97,7 +97,7 @@ router.get('/wsj-news', async (req, res) => {
     const response = await axios.get('https://newsapi.org/v2/everything', {
       params: {
         domains: 'wsj.com',
-        apiKey: 'c38bede86ae4451d99041d1bda860587', 
+        apiKey: process.env.NEWS_API_KEY
       },
     });
 
@@ -121,7 +121,7 @@ router.post('/preferences', async (req, res) => {
       for (const category of categories) {
       const response = await axios.get(NEWS_API_URL, {
         params: {
-          apiKey:'c38bede86ae4451d99041d1bda860587',
+          apiKey: process.env.NEWS_API_KEY,
           category,
           country: 'us',
         },
