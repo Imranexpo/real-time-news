@@ -4,7 +4,6 @@ const {User, Preference} = require('../models/user');
 const axios = require('axios');
 const nodemailer = require('nodemailer');
 const NEWS_API_URL = 'https://newsapi.org/v2/top-headlines';
-const apiKey = process.env.NEWS_API_KEY;
 
 
 const transporter = nodemailer.createTransport({
@@ -66,7 +65,7 @@ router.get('/news', async (req, res) => {
         q: 'latest',
         language: 'en',
         sortBy: 'publishedAt',
-        apiKey: apiKey
+        apiKey: 'c38bede86ae4451d99041d1bda860587'
       }
     });
 
@@ -81,7 +80,7 @@ router.get('/weather-news', async (req, res) => {
   try {
     const response = await axios.get('https://newsapi.org/v2/everything', {
       params: {
-        apiKey: apiKey,
+        apiKey: 'c38bede86ae4451d99041d1bda860587',
         q: 'weather',
         language: 'en',
       },
@@ -99,7 +98,7 @@ router.get('/wsj-news', async (req, res) => {
     const response = await axios.get('https://newsapi.org/v2/everything', {
       params: {
         domains: 'wsj.com',
-        apiKey: apiKey
+        apiKey: 'c38bede86ae4451d99041d1bda860587'
       },
     });
 
@@ -123,7 +122,7 @@ router.post('/preferences', async (req, res) => {
       for (const category of categories) {
       const response = await axios.get(NEWS_API_URL, {
         params: {
-          apiKey: apiKey,
+          apiKey: 'c38bede86ae4451d99041d1bda860587',
           category,
           country: 'us',
         },
