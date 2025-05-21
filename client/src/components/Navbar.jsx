@@ -33,7 +33,7 @@ const Navbar = () => {
       return;
     }
 
-    const url = isSignUp ? 'http://localhost:5000/api/register' : 'http://localhost:5000/api/login';
+    const url = isSignUp ? 'https://real-time-news-9sb0.onrender.com/api/register' : 'https://real-time-news-9sb0.onrender.com/api/login';
     const payload = isSignUp
       ? { email, password, confirmPassword }
       : { email, password };
