@@ -3,15 +3,23 @@ import axios from 'axios';
 
 export default function Dashboard() {
   const [news, setNews] = useState([]);
-  useEffect(() => {
-  axios.get('https://real-time-news-9sb0.onrender.com/api/news')
+   useEffect(() => {
+    axios.get('https://newsapi.org/v2/everything', {
+      params: {
+        q: 'latest',
+        language: 'en',
+        sortBy: 'publishedAt',
+        apiKey: 'c38bede86ae4451d99041d1bda860587'
+      }
+    })
     .then(response => {
-      console.log(response.data); // should show articles
+      console.log(response.data); // Optional: check full response
+      setNews(response.data.articles); // ✅ Store articles in state
     })
     .catch(error => {
       console.error('Error fetching news:', error);
     });
-}, []);
+  }, []);
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <h1 className="text-3xl font-bold text-center mb-6">🌍 Global Latest News</h1>
