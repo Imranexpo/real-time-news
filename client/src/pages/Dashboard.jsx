@@ -3,16 +3,18 @@ import axios from 'axios';
 
 export default function Dashboard() {
   const [news, setNews] = useState([]);
-   useEffect(() => {
+
+  useEffect(() => {
     axios.get('https://gnews.io/api/v4/search?q=example&apikey=43d4e57d0e06f25df5afefefe68647c7')
-    .then(response => {
-      console.log(response.data); // Optional: check full response
-      setNews(response.data.articles); // ✅ Store articles in state
-    })
-    .catch(error => {
-      console.error('Error fetching news:', error);
-    });
+      .then(response => {
+        console.log(response.data); // Optional: check full response
+        setNews(response.data.articles); // ✅ Store articles in state
+      })
+      .catch(error => {
+        console.error('Error fetching news:', error);
+      });
   }, []);
+
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <h1 className="text-3xl font-bold text-center mb-6">🌍 Global Latest News</h1>
@@ -22,9 +24,9 @@ export default function Dashboard() {
             key={index}
             className="bg-white rounded-xl shadow hover:shadow-lg transition duration-300 overflow-hidden"
           >
-            {item.urlToImage ? (
+            {item.image ? (
               <img
-                src={item.urlToImage}
+                src={item.image}
                 alt={item.title}
                 className="w-full h-52 object-cover"
               />
