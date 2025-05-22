@@ -4,14 +4,7 @@ import axios from 'axios';
 export default function Dashboard() {
   const [news, setNews] = useState([]);
    useEffect(() => {
-    axios.get('https://newsapi.org/v2/everything', {
-      params: {
-        q: 'latest',
-        language: 'en',
-        sortBy: 'publishedAt',
-        apiKey: 'c38bede86ae4451d99041d1bda860587'
-      }
-    })
+    axios.get('https://gnews.io/api/v4/search?q=example&apikey=43d4e57d0e06f25df5afefefe68647c7')
     .then(response => {
       console.log(response.data); // Optional: check full response
       setNews(response.data.articles); // ✅ Store articles in state
