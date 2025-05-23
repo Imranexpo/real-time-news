@@ -64,22 +64,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Wall Street Journal news
-router.get('/wsj-news', async (req, res) => {
-  try {
-    const { data } = await axios.get('https://newsapi.org/v2/everything', {
-      params: {
-        domains: 'wsj.com',
-        apiKey: NEWS_API_KEY,
-      },
-    });
-    res.status(200).json(data);
-  } catch (error) {
-    console.error('Error fetching WSJ news:', error.response?.data || error.message);
-    res.status(500).json({ message: 'Failed to fetch WSJ news', error: error.message });
-  }
-});
-
 // Save preferences and send news email
 router.post('/preferences', async (req, res) => {
   const { email, categories, frequency } = req.body;
