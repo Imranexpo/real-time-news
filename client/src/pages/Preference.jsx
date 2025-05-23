@@ -49,7 +49,7 @@ const AlertPreferences = () => {
  useEffect(() => {
   const fetchNews = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/wsj-news'); 
+      const response = await axios.get('https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=in&max=10&apikey=43d4e57d0e06f25df5afefefe68647c7'); 
       setNews(response.data.articles);
     } catch (error) {
       console.error("Error fetching the news", error);
