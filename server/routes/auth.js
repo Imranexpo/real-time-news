@@ -64,27 +64,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// General news
-router.get('/news', async (req, res) => {
-  try {
-    const { data } = await axios.get('https://newsapi.org/v2/everything', {
-      params: {
-        q: 'latest',
-        language: 'en',
-        sortBy: 'publishedAt',
-        apiKey: NEWS_API_KEY,
-      },
-      headers: {
-        'User-Agent': 'NewsApp/1.0',
-      },
-    });
-    res.status(200).json(data);
-  } catch (error) {
-    console.error('Error fetching news:', error.response?.data || error.message);
-    res.status(500).json({ message: 'Error fetching news', error: error.message });
-  }
-});
-
 // Weather-related news
 router.get('/weather-news', async (req, res) => {
   try {
