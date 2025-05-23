@@ -64,23 +64,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Weather-related news
-router.get('/weather-news', async (req, res) => {
-  try {
-    const { data } = await axios.get('https://newsapi.org/v2/everything', {
-      params: {
-        q: 'weather',
-        language: 'en',
-        apiKey: NEWS_API_KEY,
-      },
-    });
-    res.status(200).json(data);
-  } catch (error) {
-    console.error('Error fetching weather news:', error.response?.data || error.message);
-    res.status(500).json({ message: 'Failed to fetch weather news', error: error.message });
-  }
-});
-
 // Wall Street Journal news
 router.get('/wsj-news', async (req, res) => {
   try {
