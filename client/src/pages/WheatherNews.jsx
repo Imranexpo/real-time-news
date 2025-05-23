@@ -5,6 +5,7 @@ const WeatherNews = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+
   const apikey = '43d4e57d0e06f25df5afefefe68647c7';
   const query = 'weather';
 
@@ -21,7 +22,7 @@ const WeatherNews = () => {
       setLoading(false);
     }
   };
-  
+
   useEffect(() => {
     fetchWeatherNews();
   }, []);
@@ -29,18 +30,19 @@ const WeatherNews = () => {
   return (
     <div className="min-h-screen bg-gradient-to-tr from-blue-100 to-white px-4 py-8">
       <div className="max-w-6xl mx-auto">
-    <h1 className="text-3xl font-bold text-center text-blue-700 mb-8">🌤 Weather News Updates</h1>
+        <h1 className="text-3xl font-bold text-center text-blue-700 mb-8">🌤 Weather News Updates</h1>
 
         {loading && <p className="text-center text-gray-600">Loading weather news...</p>}
         {error && <p className="text-center text-red-600">{error}</p>}
 
         {!loading && articles.length > 0 && (
           <>
+            {/* Featured Article */}
             <div className="mb-12">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="h-80 md:h-full">
                   <img
-                    src={articles[0].urlToImage || 'https://via.placeholder.com/600x400'}
+                    src={articles[0].image || 'https://via.placeholder.com/600x400'}
                     alt="Featured"
                     className="w-full h-full object-cover rounded-xl shadow-lg"
                   />
@@ -78,6 +80,7 @@ const WeatherNews = () => {
               </div>
             </div>
 
+            {/* Remaining Articles */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {articles.slice(1).map((article, idx) => (
                 <div
@@ -85,7 +88,7 @@ const WeatherNews = () => {
                   className="bg-white rounded-xl shadow-md hover:shadow-lg transition overflow-hidden flex flex-col"
                 >
                   <img
-                    src={article.urlToImage || 'https://via.placeholder.com/400x200'}
+                    src={article.image || 'https://via.placeholder.com/400x200'}
                     alt="News"
                     className="h-48 w-full object-cover"
                   />
