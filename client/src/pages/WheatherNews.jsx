@@ -8,11 +8,12 @@ const WeatherNews = () => {
 
   const apikey = '43d4e57d0e06f25df5afefefe68647c7';
   const query = 'weather';
+  const country = 'in';
 
   const fetchWeatherNews = async () => {
     try {
       const response = await axios.get(
-        `https://gnews.io/api/v4/search?q=${query}&lang=en&country=us&max=10&apikey=${apikey}`
+        `https://gnews.io/api/v4/search?q=${query}&lang=en&country=${country}&max=10&apikey=${apikey}`
       );
       setArticles(response.data.articles);
     } catch (error) {
