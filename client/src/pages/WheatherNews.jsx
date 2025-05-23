@@ -5,22 +5,26 @@ const WeatherNews = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const apikey = '43d4e57d0e06f25df5afefefe68647c7';
+  const query = 'weather';
 
-const fetchWeatherNews = async () => {
-  try {
-    const response = await axios.get('http://localhost:5000/api/weather-news'); 
-    setArticles(response.data.articles);
-  } catch (error) {
-    if(error){setError('Failed to fetch weather news.')}
-  } finally {
-    setLoading(false);
-  }
-};
-
-useEffect(() => {
-  fetchWeatherNews();
-}, []);
-
+  const fetchWeatherNews = async () => {
+    try {
+      const response = await axios.get(
+        `https://gnews.io/api/v4/search?q=${query}&lang=en&country=us&max=10&apikey=${apikey}`
+      );
+      setArticles(response.data.articles);
+    } catch (error) {
+      console.error('Error fetching weather news:', error);
+      setError('Failed to fetch weather news.');
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  useEffect(() => {
+    fetchWeatherNews();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-tr from-blue-100 to-white px-4 py-8">
