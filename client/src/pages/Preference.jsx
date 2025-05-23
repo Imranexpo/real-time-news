@@ -46,18 +46,19 @@ const AlertPreferences = () => {
       alert('Error saving preferences');
     }
   };
- useEffect(() => {
-  const fetchNews = async () => {
-    try {
-      const response = await axios.get('https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=in&max=10&apikey=43d4e57d0e06f25df5afefefe68647c7'); 
-      setNews(response.data.articles);
-    } catch (error) {
-      console.error("Error fetching the news", error);
-    }
-  };
-  fetchNews();
-}, []);
-
+   useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const response = await axios.get(
+          "https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=in&max=10&apikey=43d4e57d0e06f25df5afefefe68647c7"
+        );
+        setNews(response.data.articles);
+      } catch (error) {
+        console.error("Error fetching the news", error);
+      }
+    };
+    fetchNews();
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -130,30 +131,31 @@ const AlertPreferences = () => {
         </div>
       </form>
     </div>
-
   <div className="w-full lg:w-1/2 bg-gray-100 p-0 rounded-xl shadow-lg overflow-hidden">
-  {news.length > 0 ? (
-    <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-       <img
+      {news.length > 0 ? (
+        <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+          <img
             src={news[currentIndex]?.urlToImage || "/default-image.jpg"}
             alt="News"
             className="absolute inset-0 w-full h-full object-cover"
           />
-      <div className="absolute top-4 left-4 text-white px-4 py-2">
-        <h3 className="highlighted-news">Latest News</h3>
-      </div>
-
-      <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-4">
-        <p className="text-lg font-semibold">{news[currentIndex]?.title}</p>
-        <p className="text-sm">{news[currentIndex]?.description}</p>
-      </div>
+          <div className="absolute top-4 left-4 text-white px-4 py-2 bg-black bg-opacity-60 rounded">
+            <h3 className="text-xl font-bold">Latest News</h3>
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-4">
+            <p className="text-lg font-semibold">
+              {news[currentIndex]?.title || "No Title"}
+            </p>
+            <p className="text-sm">
+              {news[currentIndex]?.description || "No Description"}
+            </p>
+          </div>
+        </div>
+      ) : (
+        <div className="p-6 text-center text-gray-600">Loading news...</div>
+      )}
     </div>
-  ) : (
-    <div className="p-6 text-center text-gray-600">Loading news...</div>
-  )}
-</div>
-
-
+  );
 
   </div>
 </div>
