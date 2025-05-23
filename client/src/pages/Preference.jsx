@@ -134,11 +134,11 @@ const AlertPreferences = () => {
   <div className="w-full lg:w-1/2 bg-gray-100 p-0 rounded-xl shadow-lg overflow-hidden">
   {news.length > 0 ? (
     <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-      <img
-        src={news[currentIndex]?.urlToImage || '/default-image.jpg'}
-        alt="News"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
+       <img
+            src={news[currentIndex]?.urlToImage || "/default-image.jpg"}
+            alt="News"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
       <div className="absolute top-4 left-4 text-white px-4 py-2">
         <h3 className="highlighted-news">Latest News</h3>
       </div>
